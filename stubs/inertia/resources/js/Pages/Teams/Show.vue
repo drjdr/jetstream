@@ -11,9 +11,15 @@
                 <update-team-name-form :team="team" :permissions="permissions" />
 
                 <team-member-manager class="mt-10 sm:mt-0"
-                            :team="team"
-                            :available-roles="availableRoles"
-                            :user-permissions="permissions" />
+                                     :team="team"
+                                     :available-roles="availableRoles"
+                                     :user-permissions="permissions" />
+
+                <template v-if="permissions.canTransferTeam && ! team.personal_team">
+                    <jet-section-border />
+
+                    <transfer-team-form class="mt-10 sm:mt-0" :team="team" :permissions="permissions" />
+                </template>
 
                 <template v-if="permissions.canDeleteTeam && ! team.personal_team">
                     <jet-section-border />
@@ -30,6 +36,7 @@
     import AppLayout from '@/Layouts/AppLayout'
     import DeleteTeamForm from './DeleteTeamForm'
     import JetSectionBorder from '@/Jetstream/SectionBorder'
+    import TransferTeamForm from './TransferTeamForm'
     import UpdateTeamNameForm from './UpdateTeamNameForm'
 
     export default {
@@ -44,6 +51,7 @@
             DeleteTeamForm,
             JetSectionBorder,
             TeamMemberManager,
+            TransferTeamForm,
             UpdateTeamNameForm,
         },
     }

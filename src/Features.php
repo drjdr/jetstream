@@ -71,6 +71,16 @@ class Features
     }
 
     /**
+     * Determine if the application can transfer teams
+     *
+     * @return bool
+     */
+    public static function hasTeamTransfers()
+    {
+        return static::optionEnabled(static::teams(), 'transfer');
+    }
+
+    /**
      * Determine if the application has terms of service / privacy policy confirmation enabled.
      *
      * @return bool

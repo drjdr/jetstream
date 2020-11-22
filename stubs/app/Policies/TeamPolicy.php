@@ -93,6 +93,18 @@ class TeamPolicy
     }
 
     /**
+     * Determine whether the user can transfer the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Team  $team
+     * @return mixed
+     */
+    public function transfer(User $user, Team $team)
+    {
+        return $user->ownsTeam($team);
+    }
+
+    /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
